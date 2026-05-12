@@ -7,38 +7,38 @@ export default async function seedDatabase() {
     console.log('Running database seed...');
 
     // 1. Seed Admin
-    const adminEmail = 'admin@arborglobal.com';
+    const adminEmail = 'admin@netlylogistics.com';
     let admin = await Admin.findOne({ where: { email: adminEmail } });
 
     if (!admin) {
       const hashedPassword = await bcrypt.hash('Admin123!', 10);
       admin = await Admin.create({
-        username: 'Arbor System Admin',
+        username: 'Netly System Admin',
         email: adminEmail,
         password: hashedPassword,
         isEmailVerified: true,
       });
-      console.log('✅ Default verified admin created (admin@arborglobal.com).');
+      console.log('✅ Default verified admin created (admin@netlylogistics.com).');
     } else {
       console.log('ℹ️ Default admin already exists, skipping seed.');
     }
 
     // 2. Seed Shipment
-    const sampleShipmentID = 'TRK-ARBOR-001';
+    const sampleShipmentID = 'TRK-NETLY-001';
     let shipment = await Shipment.findOne({ where: { shipmentID: sampleShipmentID } });
 
     if (!shipment) {
       shipment = await Shipment.create({
         shipmentID: sampleShipmentID,
-        senderName: 'Arbor Concierge',
+        senderName: 'Netly Concierge',
         recipientName: 'Distinguished Client',
         shipmentDescription: 'Confidential Secure Transport Asset',
         origin: 'Geneva, Switzerland',
         destination: 'London, United Kingdom',
-        pickupPoint: 'Arbor Secure Vault GVA',
+        pickupPoint: 'Netly Secure Vault GVA',
         dimensionInInches: '20x15x10',
         expectedTimeOfArrival: new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
-        receipientEmail: 'client@arborglobal.com',
+        receipientEmail: 'client@netlylogistics.com',
         weight: 15.5,
         freightType: 'AIR',
         status: 'RECEIVED (WAREHOUSE)',
@@ -50,7 +50,7 @@ export default async function seedDatabase() {
     }
 
     // 3. Seed Second Shipment for specific user
-    const secondShipmentID = 'TRK-ARBOR-002';
+    const secondShipmentID = 'TRK-NETLY-002';
     let secondShipment = await Shipment.findOne({ where: { shipmentID: secondShipmentID } });
 
     if (!secondShipment) {
@@ -61,7 +61,7 @@ export default async function seedDatabase() {
         shipmentDescription: 'Priority Executive Consignment',
         origin: 'Dubai, UAE',
         destination: 'Lagos, Nigeria',
-        pickupPoint: 'Arbor Private Terminal DXB',
+        pickupPoint: 'Netly Private Terminal DXB',
         dimensionInInches: '12x12x12',
         expectedTimeOfArrival: new Date(new Date().getTime() + 3 * 24 * 60 * 60 * 1000), // 3 days from now
         receipientEmail: 'nnamdisolomon1@gmail.com',

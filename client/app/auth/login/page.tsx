@@ -52,7 +52,7 @@ export default function LoginPage() {
           {/* Header */}
           <div className="bg-[#0B1D3A] p-8 text-center border-b border-white/5">
             <Image
-              src="/arbor-logo.png"
+              src="/netly-logo.png"
               alt="Netly logistics"
               width={56}
               height={56}

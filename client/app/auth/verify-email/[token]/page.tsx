@@ -245,7 +245,7 @@ export default function VerifyEmailPage() {
 
         {/* Support Link */}
         <p className="mt-8 text-center text-sm text-white/40">
-          Need help? <a href="mailto:concierge@arborglobal.com" className="font-bold text-[#C9A84C] hover:underline">Contact Concierge</a>
+          Need help? <a href="mailto:concierge@netlyglobal.com" className="font-bold text-[#C9A84C] hover:underline">Contact Concierge</a>
         </p>
       </motion.div>
     </div>

@@ -86,7 +86,7 @@ export default function SignupPage() {
           {/* Header */}
           <div className="bg-[#0B1D3A] p-6 text-center border-b border-white/5">
             <Image
-              src="/arbor-logo.png"
+              src="/netly-logo.png"
               alt="Netly logistics"
               width={48}
               height={48}

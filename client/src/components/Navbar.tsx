@@ -36,14 +36,14 @@ const Navbar: React.FC = () => {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4 flex items-center justify-between ${scrolled
-            ? "bg-white/95 backdrop-blur-xl text-[#0B1D3A] shadow-xl"
-            : "bg-transparent text-white"
+          ? "bg-white/95 backdrop-blur-xl text-[#0B1D3A] shadow-xl"
+          : "bg-transparent text-white"
           }`}
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <Image
-            src="/arbor-logo.png"
+            src="/netly-logo.png"
             alt="Netly logistics"
             width={44}
             height={44}
@@ -82,8 +82,8 @@ const Navbar: React.FC = () => {
           <Link
             href="/auth/login"
             className={`hidden sm:flex items-center gap-2 px-6 py-2.5 rounded-lg font-semibold text-[11px] tracking-[0.15em] uppercase transition-all border ${scrolled
-                ? "bg-[#0B1D3A] text-white border-[#0B1D3A] hover:bg-[#132d54]"
-                : "bg-transparent text-white border-white/30 hover:bg-white/10"
+              ? "bg-[#0B1D3A] text-white border-[#0B1D3A] hover:bg-[#132d54]"
+              : "bg-transparent text-white border-white/30 hover:bg-white/10"
               }`}
           >
             <FontAwesomeIcon icon={faUserAlt} className="text-xs" />

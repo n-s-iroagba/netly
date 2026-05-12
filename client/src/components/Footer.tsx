@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center gap-3 justify-center md:justify-start mb-4">
               <Image
-                src="/arbor-logo.png"
+                src="/netly-logo.png"
                 alt="Netly logistics"
                 width={36}
                 height={36}
@@ -22,10 +22,10 @@ const Footer = () => {
                   className="text-lg font-bold tracking-[0.2em] uppercase"
                   style={{ fontFamily: "var(--font-playfair), serif" }}
                 >
-                  Arbor
+                  Netly
                 </span>
                 <span className="text-[9px] font-semibold tracking-[0.35em] uppercase text-[#C9A84C]">
-                  Global
+                  Logistics
                 </span>
               </div>
             </div>

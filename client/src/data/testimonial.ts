@@ -22,7 +22,7 @@ export const testimonials = [
   {
     name: "O.T., Investment Group",
     testimonial:
-      "Expanding our operations globally required a logistics partner we could trust implicitly. Netly logistics exceeded every expectation.",
+      "Expanding our operations logisticsly required a logistics partner we could trust implicitly. Netly logistics exceeded every expectation.",
   },
   {
     name: "M.S., Private Client",
