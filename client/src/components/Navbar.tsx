@@ -35,11 +35,10 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4 flex items-center justify-between ${
-          scrolled 
-            ? "bg-white/95 backdrop-blur-xl text-[#0B1D3A] shadow-xl" 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4 flex items-center justify-between ${scrolled
+            ? "bg-white/95 backdrop-blur-xl text-[#0B1D3A] shadow-xl"
             : "bg-transparent text-white"
-        }`}
+          }`}
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
@@ -55,12 +54,11 @@ const Navbar: React.FC = () => {
               className="text-xl font-bold tracking-[0.2em] uppercase"
               style={{ fontFamily: "var(--font-playfair), serif" }}
             >
-              Arbor
+              Netly
             </span>
-            <span className={`text-[10px] font-semibold tracking-[0.35em] uppercase ${
-              scrolled ? "text-[#C9A84C]" : "text-[#C9A84C]"
-            }`}>
-              Global
+            <span className={`text-[10px] font-semibold tracking-[0.35em] uppercase ${scrolled ? "text-[#C9A84C]" : "text-[#C9A84C]"
+              }`}>
+              Logistics
             </span>
           </div>
         </Link>
@@ -81,20 +79,19 @@ const Navbar: React.FC = () => {
 
         {/* Auth & Actions */}
         <div className="flex items-center gap-4">
-          <Link 
+          <Link
             href="/auth/login"
-            className={`hidden sm:flex items-center gap-2 px-6 py-2.5 rounded-lg font-semibold text-[11px] tracking-[0.15em] uppercase transition-all border ${
-              scrolled 
-                ? "bg-[#0B1D3A] text-white border-[#0B1D3A] hover:bg-[#132d54]" 
+            className={`hidden sm:flex items-center gap-2 px-6 py-2.5 rounded-lg font-semibold text-[11px] tracking-[0.15em] uppercase transition-all border ${scrolled
+                ? "bg-[#0B1D3A] text-white border-[#0B1D3A] hover:bg-[#132d54]"
                 : "bg-transparent text-white border-white/30 hover:bg-white/10"
-            }`}
+              }`}
           >
             <FontAwesomeIcon icon={faUserAlt} className="text-xs" />
             Client Portal
           </Link>
 
           {/* Mobile Toggle */}
-          <button 
+          <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 rounded-lg hover:bg-black/5 transition-colors"
           >
