@@ -67,7 +67,7 @@ function seedDatabase() {
             if (!secondShipment) {
                 yield Shipment_1.Shipment.create({
                     shipmentID: secondShipmentID,
-                    senderName: 'Arbor Global Logistics',
+                    senderName: 'Netly logistics Logistics',
                     recipientName: 'Nnamdi Solomon',
                     shipmentDescription: 'Priority Executive Consignment',
                     origin: 'Dubai, UAE',

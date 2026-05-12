@@ -53,7 +53,7 @@ export default function LoginPage() {
           <div className="bg-[#0B1D3A] p-8 text-center border-b border-white/5">
             <Image
               src="/arbor-logo.png"
-              alt="Arbor Global"
+              alt="Netly logistics"
               width={56}
               height={56}
               className="mx-auto mb-4 rounded-lg"

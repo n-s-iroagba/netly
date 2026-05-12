@@ -32,7 +32,7 @@ class EmailService {
   sendEmail(options) {
     return __awaiter(this, void 0, void 0, function* () {
       try {
-        const fromName = process.env.EMAIL_FROM_NAME || 'Arbor Global';
+        const fromName = process.env.EMAIL_FROM_NAME || 'Netly logistics';
         const fromAddress = process.env.EMAIL_FROM_ADDRESS || process.env.EMAIL_USER;
         const mailOptions = {
           from: `"${fromName}" <${fromAddress}>`,
@@ -173,7 +173,7 @@ class EmailService {
               ${content}
             </div>
             <div class="footer">
-              <p>&copy; ${new Date().getFullYear()} ${process.env.BRAND_NAME || 'Arbor Global'}. All rights reserved.</p>
+              <p>&copy; ${new Date().getFullYear()} ${process.env.BRAND_NAME || 'Netly logistics'}. All rights reserved.</p>
               <p>Safe, Fast, and Reliable Shipping Solutions.</p>
             </div>
           </div>
@@ -228,7 +228,7 @@ class EmailService {
               
               <div class="footer">
                 <p>If you didn't create this account, please ignore this email.</p>
-                <p>&copy; ${new Date().getFullYear()} ${process.env.BRAND_NAME || 'Arbor Global'}. All rights reserved.</p>
+                <p>&copy; ${new Date().getFullYear()} ${process.env.BRAND_NAME || 'Netly logistics'}. All rights reserved.</p>
               </div>
             </div>
           </body>
@@ -236,7 +236,7 @@ class EmailService {
       `;
         yield this.sendEmail({
           to: user.email,
-          subject: 'Verify Your Email Address - Arbor Global',
+          subject: 'Verify Your Email Address - Netly logistics',
           html,
         });
         logger_1.default.info('Verification email sent successfully', {
@@ -297,7 +297,7 @@ class EmailService {
               
               <div class="footer">
                 <p>If you're having trouble with the button above, copy and paste the URL into your web browser.</p>
-                <p>&copy; ${new Date().getFullYear()} ${process.env.BRAND_NAME || 'Arbor Global'}. All rights reserved.</p>
+                <p>&copy; ${new Date().getFullYear()} ${process.env.BRAND_NAME || 'Netly logistics'}. All rights reserved.</p>
               </div>
             </div>
           </body>
@@ -305,7 +305,7 @@ class EmailService {
       `;
         yield this.sendEmail({
           to: email,
-          subject: 'Password Reset Request - Arbor Global',
+          subject: 'Password Reset Request - Netly logistics',
           html,
         });
         logger_1.default.info('Password reset email sent successfully', { email });
@@ -350,7 +350,7 @@ class EmailService {
               <ul style="margin: 10px 0;">
                 <li>This verification code will expire in 15 minutes</li>
                 <li>Do not share this code with anyone</li>
-                <li>Arbor Global will never ask for this code via phone or email</li>
+                <li>Netly logistics will never ask for this code via phone or email</li>
               </ul>
             </div>
             
@@ -373,7 +373,7 @@ class EmailService {
           
           <div class="footer">
             <p>If you did not request access to sensitive shipment information, please ignore this email and contact our support team immediately.</p>
-            <p>&copy; ${new Date().getFullYear()} Arbor Global. All rights reserved.</p>
+            <p>&copy; ${new Date().getFullYear()} Netly logistics. All rights reserved.</p>
             <p style="font-size: 12px; color: #999;">This is an automated message, please do not reply to this email.</p>
           </div>
         </div>
@@ -383,7 +383,7 @@ class EmailService {
       const subject = 'Secure Access Code for Sensitive Shipment Data';
       try {
         yield exports.transporter.sendMail({
-          from: `"${process.env.BRAND_NAME || 'Arbor Global'} Security" <${process.env.EMAIL_USER}>`,
+          from: `"${process.env.BRAND_NAME || 'Netly logistics'} Security" <${process.env.EMAIL_USER}>`,
           to: shipment.receipientEmail,
           subject: subject,
           html: html,

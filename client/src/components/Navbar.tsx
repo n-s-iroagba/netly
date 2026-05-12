@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
         <Link href="/" className="flex items-center gap-3 group">
           <Image
             src="/arbor-logo.png"
-            alt="Arbor Global"
+            alt="Netly logistics"
             width={44}
             height={44}
             className="rounded-lg"

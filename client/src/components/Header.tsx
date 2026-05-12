@@ -73,7 +73,7 @@ const Header: React.FC = () => {
             <div key={index} className="w-full h-full">
               <Image
                 src={image}
-                alt={`Arbor Global confidential logistics ${index + 1}`}
+                alt={`Netly logistics confidential logistics ${index + 1}`}
                 className="w-full h-screen lg:h-[80vh] object-cover"
                 priority={index === 0}
                 placeholder="blur"
@@ -106,7 +106,7 @@ const Header: React.FC = () => {
               className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-wide mb-2"
               style={{ fontFamily: "var(--font-playfair), serif" }}
             >
-              Arbor Global
+              Netly logistics
             </h1>
 
             <p className="text-lg sm:text-xl text-white/70 mt-6 max-w-2xl mx-auto leading-relaxed">

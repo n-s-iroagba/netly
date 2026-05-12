@@ -87,7 +87,7 @@ export default function SignupPage() {
           <div className="bg-[#0B1D3A] p-6 text-center border-b border-white/5">
             <Image
               src="/arbor-logo.png"
-              alt="Arbor Global"
+              alt="Netly logistics"
               width={48}
               height={48}
               className="mx-auto mb-3 rounded-lg"

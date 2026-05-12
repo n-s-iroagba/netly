@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="flex items-center gap-3 justify-center md:justify-start mb-4">
               <Image
                 src="/arbor-logo.png"
-                alt="Arbor Global"
+                alt="Netly logistics"
                 width={36}
                 height={36}
                 className="rounded-lg"
@@ -53,7 +53,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="/about" className="text-sm text-white/70 hover:text-[#C9A84C] transition-colors">
-                  About Arbor Global
+                  About Netly logistics
                 </Link>
               </li>
               <li>
@@ -82,7 +82,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="text-center text-xs text-white/40 tracking-wider">
-          &copy; {new Date().getFullYear()} Arbor Global. All rights reserved.
+          &copy; {new Date().getFullYear()} Netly logistics. All rights reserved.
           <span className="mx-2">&middot;</span>
           Confidential & Proprietary
         </div>

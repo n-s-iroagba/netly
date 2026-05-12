@@ -13,7 +13,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Arbor Global | Confidential Logistics",
+  title: "Netly logistics | Confidential Logistics",
   description:
     "Discreet, secure, and bespoke shipping solutions for high-net-worth individuals, celebrities, and distinguished clients worldwide.",
   keywords: "confidential shipping, luxury logistics, private courier, HNWI, secure transport",
