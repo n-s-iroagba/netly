@@ -187,7 +187,7 @@ export default function VerifyEmailPage() {
 
             {/* OTP Form */}
             <form onSubmit={handleVerify} className="space-y-8">
-              <div className="flex justify-between gap-2 sm:gap-3" onPaste={handlePaste}>
+              <div className="flex justify-between gap-2  sm:gap-3" onPaste={handlePaste}>
                 {code.map((digit, index) => (
                   <input
                     key={index}
@@ -198,7 +198,7 @@ export default function VerifyEmailPage() {
                     value={digit}
                     onChange={(e) => handleChange(index, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(index, e)}
-                    className="w-full h-14 sm:h-16 text-center text-xl font-bold bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-[#C9A84C] focus:bg-white focus:ring-4 focus:ring-[#C9A84C]/10 transition-all duration-200 outline-none text-[#0B1D3A]"
+                    className="w-full h-28 text-center text-xl font-bold bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-[#C9A84C] focus:bg-white focus:ring-4 focus:ring-[#C9A84C]/10 transition-all duration-200 outline-none text-[#0B1D3A]"
                   />
                 ))}
               </div>
@@ -243,10 +243,7 @@ export default function VerifyEmailPage() {
           </div>
         </div>
 
-        {/* Support Link */}
-        <p className="mt-8 text-center text-sm text-white/40">
-          Need help? <a href="mailto:concierge@netlyglobal.com" className="font-bold text-[#C9A84C] hover:underline">Contact Concierge</a>
-        </p>
+
       </motion.div>
     </div>
   );
