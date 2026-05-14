@@ -148,9 +148,9 @@ export default function VerifyEmailPage() {
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md"
       >
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-white/10 relative mb-6">
+        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-white/10 relative ">
           {/* Header */}
-          <div className="bg-[#0B1D3A] p-10 text-center relative overflow-hidden">
+          <div className="bg-[#0B1D3A] p-10 text-center relative overflow-hidden mb-6">
             <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-[#C9A84C]/5 rounded-full blur-2xl" />
             <div className="relative z-10">
               <div className="w-16 h-16 bg-[#C9A84C]/10 backdrop-blur-md rounded-2xl flex items-center justify-center mx-auto mb-6 border border-[#C9A84C]/20">
