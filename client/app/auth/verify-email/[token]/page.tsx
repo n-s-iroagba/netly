@@ -187,7 +187,7 @@ export default function VerifyEmailPage() {
 
             {/* OTP Form */}
             <form onSubmit={handleVerify} className="space-y-8">
-              <div className="flex justify-between gap-2 sm:gap-4" onPaste={handlePaste}>
+              <div className="flex justify-center gap-2 sm:gap-4" onPaste={handlePaste}>
                 {code.map((digit, index) => (
                   <input
                     key={index}
@@ -198,7 +198,7 @@ export default function VerifyEmailPage() {
                     value={digit}
                     onChange={(e) => handleChange(index, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(index, e)}
-                    className="w-full aspect-[4/5] sm:h-20 text-center text-2xl sm:text-3xl font-black bg-slate-50 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:border-[#C9A84C] focus:bg-white focus:ring-4 focus:ring-[#C9A84C]/10 transition-all duration-300 outline-none text-[#0B1D3A] shadow-inner"
+                    className="w-12 h-16 sm:w-16 sm:h-24 md:w-20 md:h-28 text-center text-3xl sm:text-4xl font-black bg-slate-50 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:border-[#C9A84C] focus:bg-white focus:ring-4 focus:ring-[#C9A84C]/10 transition-all duration-300 outline-none text-[#0B1D3A] shadow-inner"
                   />
                 ))}
               </div>
