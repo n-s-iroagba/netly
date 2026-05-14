@@ -161,7 +161,7 @@ export default function VerifyEmailPage() {
             </div>
           </div>
 
-          <div className="p-8 space-y-8">
+          <div className="p-8 sm:p-12 space-y-10">
             {/* Messages */}
             {error && (
               <motion.div
@@ -186,7 +186,7 @@ export default function VerifyEmailPage() {
             )}
 
             {/* OTP Form */}
-            <form onSubmit={handleVerify} className="space-y-8">
+            <form onSubmit={handleVerify} className="space-y-10">
               <div className="flex justify-center gap-2 sm:gap-4" onPaste={handlePaste}>
                 {code.map((digit, index) => (
                   <input
@@ -206,10 +206,10 @@ export default function VerifyEmailPage() {
               <button
                 type="submit"
                 disabled={isLoading || code.some(d => !d)}
-                className="w-full py-4 bg-[#0B1D3A] text-white rounded-2xl font-bold shadow-lg shadow-[#0B1D3A]/20 hover:bg-[#132d54] transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full py-5 bg-[#0B1D3A] text-white rounded-2xl text-lg font-bold shadow-lg shadow-[#0B1D3A]/20 hover:bg-[#132d54] transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {isLoading ? (
-                  <FiRefreshCw className="w-5 h-5 animate-spin" />
+                  <FiRefreshCw className="w-6 h-6 animate-spin" />
                 ) : (
                   "Verify Account"
                 )}
@@ -217,7 +217,7 @@ export default function VerifyEmailPage() {
             </form>
 
             {/* Footer Actions */}
-            <div className="space-y-6 pt-4 border-t border-slate-100">
+            <div className="space-y-6 pt-6 border-t border-slate-100">
               <div className="flex flex-col items-center gap-2">
                 <span className="text-sm text-slate-500">
                   {canResend ? "Didn't receive the code?" : `Resend code in ${formatTime(timeLeft)}`}
