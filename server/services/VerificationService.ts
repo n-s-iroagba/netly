@@ -30,8 +30,8 @@ export class VerificationService {
         process.env.NODE_ENV === 'production' ? CodeHelper.generateVerificationCode() : '123456'
       console.log('VVVV', verificationCode)
 
-      await this.userService.updateUserVerification(user, verificationCode, verificationToken)
-      await this.emailService.sendVerificationEmail(user,verificationCode)
+      const updatedUser = await this.userService.updateUserVerification(user, verificationCode, verificationToken)
+      await this.emailService.sendVerificationEmail(updatedUser,verificationCode)
 
       logger.info('Verification details generated successfully', { userId: user.id })
       return { verificationToken, id: user.id }
@@ -51,9 +51,9 @@ export class VerificationService {
          process.env.NODE_ENV === 'production' ? CodeHelper.generateVerificationCode() : '123456'
       console.log('VVVV', verificationCode)
 
-      await this.userService.updateUserVerification(user, verificationCode, verificationToken)
+      const updatedUser = await this.userService.updateUserVerification(user, verificationCode, verificationToken)
  
-      await this.emailService.sendVerificationEmail(user,verificationCode)
+      await this.emailService.sendVerificationEmail(updatedUser,verificationCode)
 
       logger.info('Verification code regenerated', { userId: user.id })
       return verificationToken

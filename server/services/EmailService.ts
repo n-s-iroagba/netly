@@ -60,6 +60,12 @@ export class EmailService {
         response: info.response,
       })
     } catch (error: any) {
+      console.log('Failed to send email', {
+        to: options.to,
+        subject: options.subject,
+        error: error.message,
+        stack: error.stack,
+      })
       logger.error('Failed to send email', {
         to: options.to,
         subject: options.subject,

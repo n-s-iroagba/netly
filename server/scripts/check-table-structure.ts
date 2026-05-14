@@ -13,14 +13,14 @@ export default async function checkTableStructure() {
     console.log('Current columns in ShippingStages:');
     console.table(columns);
 
-    // Check if payment_status exists
-    const paymentStatusColumn = (columns as any[]).find(col => col.Field === 'payment_status');
+    // Check if paymentStatus exists
+    const paymentStatusColumn = (columns as any[]).find(col => col.Field === 'paymentStatus');
 
     if (paymentStatusColumn) {
-      console.log('\n✅ payment_status column exists:');
+      console.log('\n✅ paymentStatus column exists:');
       console.log(paymentStatusColumn);
     } else {
-      console.log('\n❌ payment_status column does NOT exist');
+      console.log('\n❌ paymentStatus column does NOT exist');
 
       // Check for similar columns
       const similarColumns = (columns as any[]).filter(col =>

@@ -33,13 +33,12 @@ export const connectDB = async (force: boolean = false) => {
 
     // Sync database
     await sequelize
-      .sync({ force: force })
+      .sync({ force: false })
       .then(() => console.log('✅ Tables formed with associations'));
 
     // Dynamically import scripts to prevent circular dependency with sequelize initialization
     const { default: seedDatabase } = await import('../scripts/seed');
     const { default: checkTableStructure } = await import('../scripts/check-table-structure');
-    const { default: updatePaymentStatusEnum } = await import('../scripts/update-payment-status-migration');
     const { updateExistingPaymentStatus } = await import('../scripts/update-existing-payment-status');
 
     // Run seed idempotently
@@ -53,15 +52,7 @@ export const connectDB = async (force: boolean = false) => {
       .catch((error) => {
         console.error('Check failed:', error);
       });
-      
-    await updatePaymentStatusEnum()
-      .then(() => {
-        console.log('Migration script finished successfully');
-      })
-      .catch((error) => {
-        console.error('Migration script failed:', error);
-      });
-      
+
     await updateExistingPaymentStatus()
       .then(() => {
         console.log('\n🎉 PaymentStatus column update completed successfully!');

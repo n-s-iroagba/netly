@@ -31,7 +31,7 @@ export default function VerifyEmailPage() {
 
   /* ----------  Timer Logic  ---------- */
   useEffect(() => {
-    if (!urlToken) {
+    if (!urlToken || urlToken === "undefined") {
       router.push("/auth/login");
       return;
     }

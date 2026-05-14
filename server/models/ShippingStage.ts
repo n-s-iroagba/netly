@@ -20,7 +20,7 @@ export interface ShippingStageAttributes {
   dateAndTime: Date;
   percentageNote?: string;
   feeInDollars?: number | null;
-  paymentStatus: ShippingStagePaymentStatus; // Changed from ShippingStagePaymentStatus to ShippingStagePaymentStatus
+  paymentStatus: ShippingStagePaymentStatus;
   supportingDocument?: Buffer;
   longitude: number;
   latitude: number;
