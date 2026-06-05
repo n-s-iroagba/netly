@@ -12,7 +12,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { getRequest } from "@/utils/apiUtils";
+import { getRequest, clearTokens } from "@/utils/apiUtils";
 import { routes } from "@/data/routes";
 
 interface AdminOffcanvasProps {
@@ -44,7 +44,7 @@ export default function AdminOffcanvas({ children }: AdminOffcanvasProps) {
   const logout = async () => {
     try {
       await getRequest(routes.auth.logout);
-
+      await clearTokens();
       router.push("/login");
     } catch (err) {
       alert("Unable to log out an error occured");

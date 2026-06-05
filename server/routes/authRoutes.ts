@@ -30,5 +30,6 @@ router.post('/verify-email', validateBody(verifyEmailCodeSchema), authController
 router.post('/resend-code', validateBody(resendCodeSchema), authController.resendCode)
 router.get('/refresh-token', authController.refreshToken)
 router.get('/me', authenticate, authController.getMe)
+router.get('/logout', authController.logout)
 
 export default router
