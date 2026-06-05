@@ -21,7 +21,7 @@ import { Spinner } from "@/components/Spinner";
 import ErrorAlert from "@/components/ErrorAlert";
 import VerificationModal from "@/components/VerificationModal";
 import { getRequest } from "@/utils/apiUtils";
-import { handleError } from "@/utils/utils";
+import { handleError, getCookie, setCookie, deleteCookie } from "@/utils/utils";
 import type { Shipment } from "@/types/shipment.types";
 import { ShippingStagePaymentStatus } from "@/types/stage.types";
 import Footer from "@/components/Footer";
@@ -51,10 +51,27 @@ export default function ShipmentTrackingDashboard() {
   const [isInitiating, setIsInitiating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  /* ----------  Check for session token ---------- */
+  /* ----------  Check for session token & verification state ---------- */
   useEffect(() => {
     setViewToken(sessionStorage.getItem("temp-shipping-view"));
-  }, []);
+
+    const savedSession = getCookie("otp-verify-session");
+    if (savedSession) {
+      try {
+        const sessionData = JSON.parse(savedSession);
+        if (
+          sessionData.showVerifyModal &&
+          sessionData.initToken &&
+          sessionData.trackingId === trackingId
+        ) {
+          setInitToken(sessionData.initToken);
+          setShowVerifyModal(true);
+        }
+      } catch (e) {
+        console.error("Failed to parse verification session cookie", e);
+      }
+    }
+  }, [trackingId]);
 
   /* ----------  Data Fetching ---------- */
   // Minimal info (always fetch if no token)
@@ -87,6 +104,14 @@ export default function ShipmentTrackingDashboard() {
       const token = await getRequest(`/shipment/initiate/${shipmentId}`);
       setInitToken(token);
       setShowVerifyModal(true);
+      setCookie(
+        "otp-verify-session",
+        JSON.stringify({
+          showVerifyModal: true,
+          initToken: token,
+          trackingId,
+        })
+      );
     } catch (err) {
       handleError(err, setError);
     } finally {
@@ -444,7 +469,10 @@ export default function ShipmentTrackingDashboard() {
       {showVerifyModal && (
         <VerificationModal
           token={initToken}
-          onClose={() => setShowVerifyModal(false)}
+          onClose={() => {
+            setShowVerifyModal(false);
+            deleteCookie("otp-verify-session");
+          }}
         />
       )}
       <Footer />

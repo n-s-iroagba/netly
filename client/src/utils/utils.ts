@@ -108,3 +108,27 @@ export const uploadFile = async (
     throw error;
   }
 };
+
+export function getCookie(name: string): string | null {
+  if (typeof document === 'undefined') return null;
+  const nameLenPlus = (name.length + 1);
+  return document.cookie
+    .split(';')
+    .map(c => c.trim())
+    .filter(cookie => {
+      return cookie.substring(0, nameLenPlus) === `${name}=`;
+    })
+    .map(cookie => {
+      return decodeURIComponent(cookie.substring(nameLenPlus));
+    })[0] || null;
+}
+
+export function setCookie(name: string, value: string) {
+  if (typeof document === 'undefined') return;
+  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; SameSite=Lax`;
+}
+
+export function deleteCookie(name: string) {
+  if (typeof document === 'undefined') return;
+  document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax`;
+}

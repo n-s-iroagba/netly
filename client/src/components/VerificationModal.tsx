@@ -4,6 +4,8 @@ import { postRequest } from "@/utils/apiUtils";
 import { useState, useCallback, useEffect } from "react";
 import { XMarkIcon, ShieldCheckIcon, ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
+import { deleteCookie } from "@/utils/utils";
+
 interface VerificationModalProps {
   onClose: () => void;
   token: string;
@@ -58,6 +60,7 @@ export default function VerificationModal({ onClose, token }: VerificationModalP
       });
       
       sessionStorage.setItem("temp-shipping-view", response);
+      deleteCookie("otp-verify-session");
       
       // Show success state briefly before reload
       setTimeout(() => {
