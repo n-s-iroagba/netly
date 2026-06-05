@@ -45,7 +45,7 @@ export default function AdminOffcanvas({ children }: AdminOffcanvasProps) {
     try {
       await getRequest(routes.auth.logout);
       await clearTokens();
-      router.push("/login");
+      router.push("/auth/login");
     } catch (err) {
       alert("Unable to log out an error occured");
       console.log(err);
@@ -104,7 +104,7 @@ export default function AdminOffcanvas({ children }: AdminOffcanvasProps) {
                 text: "My Shipments",
                 icon: UserPlusIcon,
               },
-                {
+              {
                 href: "/admin/all-payments",
                 text: "All Payments",
                 icon: CurrencyDollarIcon,

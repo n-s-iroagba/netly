@@ -69,12 +69,11 @@ const connectDB = (...args_1) => __awaiter(void 0, [...args_1], void 0, function
         yield Promise.resolve().then(() => __importStar(require('../models/init')));
         // Sync database
         yield exports.sequelize
-            .sync({ force: force })
+            .sync({ force: false })
             .then(() => console.log('✅ Tables formed with associations'));
         // Dynamically import scripts to prevent circular dependency with sequelize initialization
         const { default: seedDatabase } = yield Promise.resolve().then(() => __importStar(require('../scripts/seed')));
         const { default: checkTableStructure } = yield Promise.resolve().then(() => __importStar(require('../scripts/check-table-structure')));
-        const { default: updatePaymentStatusEnum } = yield Promise.resolve().then(() => __importStar(require('../scripts/update-payment-status-migration')));
         const { updateExistingPaymentStatus } = yield Promise.resolve().then(() => __importStar(require('../scripts/update-existing-payment-status')));
         // Run seed idempotently
         yield seedDatabase();
@@ -85,13 +84,6 @@ const connectDB = (...args_1) => __awaiter(void 0, [...args_1], void 0, function
         })
             .catch((error) => {
             console.error('Check failed:', error);
-        });
-        yield updatePaymentStatusEnum()
-            .then(() => {
-            console.log('Migration script finished successfully');
-        })
-            .catch((error) => {
-            console.error('Migration script failed:', error);
         });
         yield updateExistingPaymentStatus()
             .then(() => {

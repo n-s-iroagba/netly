@@ -18,4 +18,5 @@ router.post('/verify-email', (0, validate_1.validateBody)(auth_validation_1.veri
 router.post('/resend-code', (0, validate_1.validateBody)(auth_validation_1.resendCodeSchema), authController.resendCode);
 router.get('/refresh-token', authController.refreshToken);
 router.get('/me', auth_1.authenticate, authController.getMe);
+router.get('/logout', authController.logout);
 exports.default = router;

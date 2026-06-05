@@ -32,8 +32,8 @@ class VerificationService {
                 const verificationToken = this.tokenService.generateEmailVerificationToken(user);
                 const verificationCode = process.env.NODE_ENV === 'production' ? codeHelper_1.CodeHelper.generateVerificationCode() : '123456';
                 console.log('VVVV', verificationCode);
-                yield this.userService.updateUserVerification(user, verificationCode, verificationToken);
-                yield this.emailService.sendVerificationEmail(user, verificationCode);
+                const updatedUser = yield this.userService.updateUserVerification(user, verificationCode, verificationToken);
+                yield this.emailService.sendVerificationEmail(updatedUser, verificationCode);
                 logger_1.default.info('Verification details generated successfully', { userId: user.id });
                 return { verificationToken, id: user.id };
             }
@@ -52,8 +52,8 @@ class VerificationService {
                 const verificationToken = this.tokenService.generateEmailVerificationToken(user);
                 const verificationCode = process.env.NODE_ENV === 'production' ? codeHelper_1.CodeHelper.generateVerificationCode() : '123456';
                 console.log('VVVV', verificationCode);
-                yield this.userService.updateUserVerification(user, verificationCode, verificationToken);
-                yield this.emailService.sendVerificationEmail(user, verificationCode);
+                const updatedUser = yield this.userService.updateUserVerification(user, verificationCode, verificationToken);
+                yield this.emailService.sendVerificationEmail(updatedUser, verificationCode);
                 logger_1.default.info('Verification code regenerated', { userId: user.id });
                 return verificationToken;
             }

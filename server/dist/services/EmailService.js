@@ -1,15 +1,15 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-  function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-    function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-    function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailService = exports.transporter = void 0;
@@ -17,62 +17,68 @@ exports.EmailService = exports.transporter = void 0;
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const logger_1 = __importDefault(require("../utils/logger"));
 exports.transporter = nodemailer_1.default.createTransport({
-  host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-  port: parseInt(process.env.EMAIL_PORT || '465'),
-  secure: process.env.EMAIL_SECURE === 'true' || true,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
+    host: process.env.EMAIL_HOST || 'smtp.gmail.com',
+    port: parseInt(process.env.EMAIL_PORT || '465'),
+    secure: process.env.EMAIL_SECURE === 'true' || true,
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+    },
 });
 class EmailService {
-  constructor(clientUrl) {
-    this.clientUrl = clientUrl;
-  }
-  sendEmail(options) {
-    return __awaiter(this, void 0, void 0, function* () {
-      try {
-        const fromName = process.env.EMAIL_FROM_NAME || 'Netly logistics';
-        const fromAddress = process.env.EMAIL_FROM_ADDRESS || process.env.EMAIL_USER;
-        const mailOptions = {
-          from: `"${fromName}" <${fromAddress}>`,
-          to: options.to,
-          subject: options.subject,
-          html: options.html,
-          text: options.text || this.stripHtml(options.html),
-          attachments: options.attachments || [],
-        };
-        const info = yield exports.transporter.sendMail(mailOptions);
-        logger_1.default.info('Email sent successfully', {
-          messageId: info.messageId,
-          to: options.to,
-          subject: options.subject,
-          response: info.response,
+    constructor(clientUrl) {
+        this.clientUrl = clientUrl;
+    }
+    sendEmail(options) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const fromName = process.env.EMAIL_FROM_NAME || 'Netly logistics';
+                const fromAddress = process.env.EMAIL_FROM_ADDRESS || process.env.EMAIL_USER;
+                const mailOptions = {
+                    from: `"${fromName}" <${fromAddress}>`,
+                    to: options.to,
+                    subject: options.subject,
+                    html: options.html,
+                    text: options.text || this.stripHtml(options.html),
+                    attachments: options.attachments || [],
+                };
+                const info = yield exports.transporter.sendMail(mailOptions);
+                logger_1.default.info('Email sent successfully', {
+                    messageId: info.messageId,
+                    to: options.to,
+                    subject: options.subject,
+                    response: info.response,
+                });
+            }
+            catch (error) {
+                console.log('Failed to send email', {
+                    to: options.to,
+                    subject: options.subject,
+                    error: error.message,
+                    stack: error.stack,
+                });
+                logger_1.default.error('Failed to send email', {
+                    to: options.to,
+                    subject: options.subject,
+                    error: error.message,
+                    stack: error.stack,
+                });
+                throw new Error(`Failed to send email to ${options.to}: ${error.message}`);
+            }
         });
-      }
-      catch (error) {
-        logger_1.default.error('Failed to send email', {
-          to: options.to,
-          subject: options.subject,
-          error: error.message,
-          stack: error.stack,
-        });
-        throw new Error(`Failed to send email to ${options.to}: ${error.message}`);
-      }
-    });
-  }
-  stripHtml(html) {
-    return html
-      .replace(/<[^>]*>/g, '')
-      .replace(/&nbsp;/g, ' ')
-      .replace(/&amp;/g, '&')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
-      .trim();
-  }
-  // Email Templates
-  getBaseEmailStyles() {
-    return `
+    }
+    stripHtml(html) {
+        return html
+            .replace(/<[^>]*>/g, '')
+            .replace(/&nbsp;/g, ' ')
+            .replace(/&amp;/g, '&')
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .trim();
+    }
+    // Email Templates
+    getBaseEmailStyles() {
+        return `
       <style>
         body { 
           font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
@@ -153,9 +159,9 @@ class EmailService {
         }
       </style>
     `;
-  }
-  wrapInTemplate(title, content, subtitle) {
-    return `
+    }
+    wrapInTemplate(title, content, subtitle) {
+        return `
       <!DOCTYPE html>
       <html>
         <head>
@@ -180,13 +186,13 @@ class EmailService {
         </body>
       </html>
     `;
-  }
-  // Verification Email
-  sendVerificationEmail(user, code) {
-    return __awaiter(this, void 0, void 0, function* () {
-      try {
-        const verificationUrl = `${this.clientUrl}/auth/verify-email/${user.verificationToken}`;
-        const html = `
+    }
+    // Verification Email
+    sendVerificationEmail(user, code) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const verificationUrl = `${this.clientUrl}/auth/verify-email/${user.verificationToken}`;
+                const html = `
         <!DOCTYPE html>
         <html>
           <head>
@@ -234,32 +240,32 @@ class EmailService {
           </body>
         </html>
       `;
-        yield this.sendEmail({
-          to: user.email,
-          subject: 'Verify Your Email Address - Netly logistics',
-          html,
+                yield this.sendEmail({
+                    to: user.email,
+                    subject: 'Verify Your Email Address - Netly logistics',
+                    html,
+                });
+                logger_1.default.info('Verification email sent successfully', {
+                    userId: user.id,
+                    email: user.email,
+                });
+            }
+            catch (error) {
+                logger_1.default.error('Failed to send verification email', {
+                    userId: user.id,
+                    email: user.email,
+                    error: error.message,
+                });
+                throw new Error('Failed to send verification email');
+            }
         });
-        logger_1.default.info('Verification email sent successfully', {
-          userId: user.id,
-          email: user.email,
-        });
-      }
-      catch (error) {
-        logger_1.default.error('Failed to send verification email', {
-          userId: user.id,
-          email: user.email,
-          error: error.message,
-        });
-        throw new Error('Failed to send verification email');
-      }
-    });
-  }
-  // Password Reset Email
-  sendPasswordResetEmail(email, token) {
-    return __awaiter(this, void 0, void 0, function* () {
-      try {
-        const resetUrl = `${this.clientUrl}/auth/reset-password/${token}`;
-        const html = `
+    }
+    // Password Reset Email
+    sendPasswordResetEmail(email, token) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const resetUrl = `${this.clientUrl}/auth/reset-password/${token}`;
+                const html = `
         <!DOCTYPE html>
         <html>
           <head>
@@ -303,25 +309,25 @@ class EmailService {
           </body>
         </html>
       `;
-        yield this.sendEmail({
-          to: email,
-          subject: 'Password Reset Request - Netly logistics',
-          html,
+                yield this.sendEmail({
+                    to: email,
+                    subject: 'Password Reset Request - Netly logistics',
+                    html,
+                });
+                logger_1.default.info('Password reset email sent successfully', { email });
+            }
+            catch (error) {
+                logger_1.default.error('Failed to send password reset email', {
+                    email,
+                    error: error.message,
+                });
+                throw new Error('Failed to send password reset email');
+            }
         });
-        logger_1.default.info('Password reset email sent successfully', { email });
-      }
-      catch (error) {
-        logger_1.default.error('Failed to send password reset email', {
-          email,
-          error: error.message,
-        });
-        throw new Error('Failed to send password reset email');
-      }
-    });
-  }
-  sendInitialiseSensitiveTrackingEmail(shipment, code) {
-    return __awaiter(this, void 0, void 0, function* () {
-      const html = `
+    }
+    sendInitialiseSensitiveTrackingEmail(shipment, code) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const html = `
     <!DOCTYPE html>
     <html>
       <head>
@@ -380,68 +386,68 @@ class EmailService {
       </body>
     </html>
   `;
-      const subject = 'Secure Access Code for Sensitive Shipment Data';
-      try {
-        yield exports.transporter.sendMail({
-          from: `"${process.env.BRAND_NAME || 'Netly logistics'} Security" <${process.env.EMAIL_USER}>`,
-          to: shipment.receipientEmail,
-          subject: subject,
-          html: html,
+            const subject = 'Secure Access Code for Sensitive Shipment Data';
+            try {
+                yield exports.transporter.sendMail({
+                    from: `"${process.env.BRAND_NAME || 'Netly logistics'} Security" <${process.env.EMAIL_USER}>`,
+                    to: shipment.receipientEmail,
+                    subject: subject,
+                    html: html,
+                });
+                console.log(`Sensitive data access email sent to ${shipment.receipientEmail} for shipment ${shipment.trackingNumber}`);
+            }
+            catch (e) {
+                console.error('Failed to send sensitive data access email:', e);
+                throw new Error('Failed to send sensitive data access email');
+            }
         });
-        console.log(`Sensitive data access email sent to ${shipment.receipientEmail} for shipment ${shipment.trackingNumber}`);
-      }
-      catch (e) {
-        console.error('Failed to send sensitive data access email:', e);
-        throw new Error('Failed to send sensitive data access email');
-      }
-    });
-  }
-  ;
-  // Generic method for custom emails
-  sendCustomEmail(to, subject, html, text, attachments) {
-    return __awaiter(this, void 0, void 0, function* () {
-      try {
-        const wrappedHtml = this.wrapInTemplate(subject, html);
-        yield this.sendEmail({ to, subject, html: wrappedHtml, text, attachments });
-        logger_1.default.info('Custom email sent successfully', { to, subject });
-      }
-      catch (error) {
-        logger_1.default.error('Failed to send custom email', {
-          to,
-          subject,
-          error: error.message,
+    }
+    ;
+    // Generic method for custom emails
+    sendCustomEmail(to, subject, html, text, attachments) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const wrappedHtml = this.wrapInTemplate(subject, html);
+                yield this.sendEmail({ to, subject, html: wrappedHtml, text, attachments });
+                logger_1.default.info('Custom email sent successfully', { to, subject });
+            }
+            catch (error) {
+                logger_1.default.error('Failed to send custom email', {
+                    to,
+                    subject,
+                    error: error.message,
+                });
+                throw new Error('Failed to send custom email');
+            }
         });
-        throw new Error('Failed to send custom email');
-      }
-    });
-  }
-  // Bulk email method
-  sendBulkEmails(emails) {
-    return __awaiter(this, void 0, void 0, function* () {
-      const results = {
-        successful: 0,
-        failed: [],
-      };
-      for (const emailOptions of emails) {
-        try {
-          yield this.sendEmail(emailOptions);
-          results.successful++;
-        }
-        catch (error) {
-          results.failed.push({
-            email: emailOptions.to,
-            error: error.message,
-          });
-        }
-      }
-      logger_1.default.info('Bulk email operation completed', {
-        total: emails.length,
-        successful: results.successful,
-        failed: results.failed.length,
-      });
-      return results;
-    });
-  }
+    }
+    // Bulk email method
+    sendBulkEmails(emails) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const results = {
+                successful: 0,
+                failed: [],
+            };
+            for (const emailOptions of emails) {
+                try {
+                    yield this.sendEmail(emailOptions);
+                    results.successful++;
+                }
+                catch (error) {
+                    results.failed.push({
+                        email: emailOptions.to,
+                        error: error.message,
+                    });
+                }
+            }
+            logger_1.default.info('Bulk email operation completed', {
+                total: emails.length,
+                successful: results.successful,
+                failed: results.failed.length,
+            });
+            return results;
+        });
+    }
 }
 exports.EmailService = EmailService;
 // Test email connection
